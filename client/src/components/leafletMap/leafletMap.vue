@@ -5,7 +5,7 @@
         <l-map ref="myMap" style="height: 80%; width: 100%" :zoom="zoom" :center="center">
           <l-tile-layer :url="url"></l-tile-layer>
           <l-circle-marker
-            v-for="hike in hikingSpots"
+            v-for="hike in getHikingsSpots"
             :key="hike._id"
             :lat-lng="hike.coordinates"
             :radius="circle.radius"
@@ -33,6 +33,7 @@
 
 <script>
 import { LCircleMarker, LMap, LPopup, LTileLayer } from 'vue2-leaflet';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
@@ -53,19 +54,12 @@ export default {
       color: 'red',
     },
     // hiking spots
-    hikingSpotsApi: [],
     hikingSpots: [],
   }),
+  computed: {
+    ...mapGetters(['getHikingsSpots', 'getHikingsSpots']),
+  },
   methods: {
-    searchHikes(searchText) {
-      if (searchText) {
-        this.hikingSpots = this.hikingSpotsApi.filter((x) =>
-          x.searchWords.some((e) => e.toLowerCase().indexOf(searchText.toLowerCase()) >= 0)
-        );
-      } else {
-        this.hikingSpots = this.hikingSpotsApi;
-      }
-    },
     async downloadHike(url) {
       try {
         const pdf = await this.axios.get(`/api/downloadPdf/${url}`, {
@@ -85,15 +79,6 @@ export default {
         console.error(error);
       }
     },
-  },
-  async created() {
-    try {
-      const hikesData = await this.axios.get('/api/all-hikings');
-      this.hikingSpotsApi = [...hikesData.data.data];
-      this.hikingSpots = [...hikesData.data.data];
-    } catch (error) {
-      console.error(error);
-    }
   },
 };
 </script>

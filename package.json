@@ -9,5 +9,7 @@
     "postinstall": "npm run client:build && cd server && npm install && cd ..",
     "start": "node ./server/server"
   },
-  "dependencies": {}
+  "dependencies": {
+    "vuex": "^3.6.0"
+  }
 }

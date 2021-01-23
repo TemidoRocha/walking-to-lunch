@@ -1,11 +1,13 @@
 <template>
   <div>
-    <toolbar @searchHikes="searchHikes" />
-    <leafletMap ref="leafletMap" />
+    <toolbar />
+    <leafletMap />
+    <hikeCards />
   </div>
 </template>
 
 <script>
+import HikeCards from './components/hikeCards/hikeCards.vue';
 import leafletMap from './components/leafletMap/leafletMap';
 import toolbar from './components/toolbar/toolbar';
 
@@ -14,12 +16,10 @@ export default {
   components: {
     leafletMap,
     toolbar,
+    HikeCards,
   },
-  methods: {
-    searchHikes(searchHikingSpot) {
-      /** when vuex implemented this logic disappears */
-      this.$refs.leafletMap.searchHikes(searchHikingSpot);
-    },
+  created() {
+    this.$store.dispatch('setAllHikingSpots');
   },
 };
 </script>
