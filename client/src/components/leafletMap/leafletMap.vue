@@ -57,7 +57,7 @@ export default {
     hikingSpots: [],
   }),
   computed: {
-    ...mapGetters(['getHikingsSpots', 'getHikingsSpots']),
+    ...mapGetters(['getHikingsSpots']),
   },
   methods: {
     async downloadHike(url) {
