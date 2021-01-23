@@ -1,15 +1,16 @@
 <template>
   <v-container class="grey lighten-5 mb-6" fluid>
-    <v-row style="height: 100vh;">
+    <v-row no-gutters style="height: 75vh;">
       <v-col>
-        <l-map ref="myMap" style="height: 80%; width: 100%" :zoom="zoom" :center="center">
+        <l-map ref="myMap" style="width: 100%" :zoom="zoom" :center="center">
           <l-tile-layer :url="url"></l-tile-layer>
           <l-circle-marker
             v-for="hike in getHikingsSpots"
             :key="hike._id"
             :lat-lng="hike.coordinates"
             :radius="circle.radius"
-            :color="circle.color"
+            :color="circle.color[hike.dificulty]"
+            @click="popupTriggered"
           >
             <l-popup>
               <v-card-subtitle>
@@ -51,7 +52,11 @@ export default {
     bounds: null,
     circle: {
       radius: 6,
-      color: 'red',
+      color: {
+        low: 'green',
+        medium: 'yellow',
+        high: 'red',
+      },
     },
     // hiking spots
     hikingSpots: [],
@@ -60,6 +65,9 @@ export default {
     ...mapGetters(['getHikingsSpots']),
   },
   methods: {
+    popupTriggered(event) {
+      this.$store.commit('filterHikingCards', event.target._popup._content.firstChild.innerText);
+    },
     async downloadHike(url) {
       try {
         const pdf = await this.axios.get(`/api/downloadPdf/${url}`, {

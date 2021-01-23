@@ -6,8 +6,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    // from the api
     hikingSpotsApi: [],
+    // for leaflet
     hikingSpots: [],
+    //for cards
+    showAll: false,
+    hikingCards: [],
   },
   getters: {
     getHikingsSpotsApi(state) {
@@ -15,6 +20,12 @@ export default new Vuex.Store({
     },
     getHikingsSpots(state) {
       return state.hikingSpots;
+    },
+    getHikingsCards(state) {
+      return state.hikingCards;
+    },
+    getShowAll(state) {
+      return state.showAll;
     },
   },
   mutations: {
@@ -30,6 +41,24 @@ export default new Vuex.Store({
       } else {
         state.hikingSpots = state.hikingSpotsApi;
       }
+    },
+    // hiking cards methods
+    filterHikingCards(state, payload) {
+      /** filter the hikingCards as per code district */
+      if (payload) {
+        state.showAll = false;
+        state.hikingCards = state.hikingSpotsApi.filter((x) =>
+          x.code.includes(payload.slice(1, 4))
+        );
+      } else {
+        state.hikingCards = [];
+      }
+    },
+    setHikingCardsIsShowAll(state, payload) {
+      state.hikingCards = payload ? state.hikingSpotsApi : [];
+    },
+    updateShowAll(state, payload) {
+      state.showAll = payload;
     },
   },
   actions: {

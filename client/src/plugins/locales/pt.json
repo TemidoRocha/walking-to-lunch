@@ -14,5 +14,8 @@
   "medium": "média",
   "low": "baixa",
   "round": "circular",
-  "linear": "linear"
+  "linear": "linear",
+  "linear (with return)": "linear (com regresso)",
+  "show all tracks": "mostrar todos os percursos",
+  "filter options": "filtros"
 }

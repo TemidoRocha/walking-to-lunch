@@ -24,4 +24,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.maxwidth100 {
+  max-width: 100%;
+}
+</style>

@@ -14,5 +14,8 @@
   "medium": "medium",
   "low": "low",
   "round": "round",
-  "linear": "linear"
+  "linear": "linear",
+  "linear (with return)": "linear (with return)",
+  "show all tracks": "show all tracks",
+  "filter options": "filter options"
 }
