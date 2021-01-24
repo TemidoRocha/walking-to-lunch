@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    publicPath: process.env.BASE_URL,
     // from the api
     hikingSpotsApi: [],
     // for leaflet
@@ -15,6 +16,9 @@ export default new Vuex.Store({
     hikingCards: [],
   },
   getters: {
+    getPublicPath(state) {
+      return state.publicPath;
+    },
     getHikingsSpotsApi(state) {
       return state.hikingSpotsApi;
     },

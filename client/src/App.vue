@@ -28,4 +28,9 @@ export default {
 .maxwidth100 {
   max-width: 100%;
 }
+/* style of the favicon at the toolba */
+.bRadios8mr10 {
+  border-radius: 8px;
+  margin-right: 10px;
+}
 </style>

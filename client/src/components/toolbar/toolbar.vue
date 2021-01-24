@@ -1,6 +1,7 @@
 <template>
   <v-card color="grey lighten-4" flat height="75px" tile>
     <v-app-bar dense>
+      <img class="bRadios8mr10" :src="`${getPublicPath}xisto.v01.ico`" alt="favicon" />
       <v-toolbar-title v-if="$vuetify.breakpoint.name != 'xs' || !isCollapse">{{
         $t('walk to lunch')
       }}</v-toolbar-title>
@@ -37,6 +38,11 @@ export default {
     isCollapse: false,
     searchHikingSpot: '',
   }),
+  computed: {
+    getPublicPath() {
+      return this.$store.getters.getPublicPath;
+    },
+  },
   methods: {
     // for xs screens
     toggleXs() {
