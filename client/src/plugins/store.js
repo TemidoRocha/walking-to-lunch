@@ -7,6 +7,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     publicPath: process.env.BASE_URL,
+    userId: null,
+    userEmail: null,
+    userName: null,
     // from the api
     hikingSpotsApi: [],
     // for leaflet
@@ -18,6 +21,15 @@ export default new Vuex.Store({
   getters: {
     getPublicPath(state) {
       return state.publicPath;
+    },
+    getUserId(state) {
+      return state.userId;
+    },
+    getUserName(state) {
+      return state.userEmail;
+    },
+    getUserEmail(state) {
+      return state.userName;
     },
     getHikingsSpotsApi(state) {
       return state.hikingSpotsApi;
@@ -33,6 +45,18 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    // login settings
+    setUser(state, payload) {
+      state.userId = payload._id;
+      state.userEmail = payload.email;
+      state.userName = payload.name;
+    },
+    logout(state) {
+      state.userId = null;
+      state.userEmail = null;
+      state.userName = null;
+    },
+    // hiking spots
     setAllHikingSpots(state, payload) {
       state.hikingSpotsApi = [...payload];
       state.hikingSpots = [...payload];
@@ -66,6 +90,24 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    // loginSettings
+    async signUp({ commit }, payload) {
+      try {
+        const submitRes = await axios.post('/api/authentication/sign-up', payload);
+        commit('setUser', submitRes.data.user);
+      } catch (error) {
+        console.dir(error);
+      }
+    },
+    async login({ commit }, payload) {
+      try {
+        const submitRes = await axios.post('/api/authentication/sign-in', payload);
+        commit('setUser', submitRes.data.user);
+      } catch (error) {
+        console.dir(error);
+      }
+    },
+    // hiking spots sttings
     async setAllHikingSpots({ commit }) {
       try {
         const hikesData = await axios.get('/api/all-hikings');

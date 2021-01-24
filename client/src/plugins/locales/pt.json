@@ -17,5 +17,7 @@
   "linear": "linear",
   "linear (with return)": "linear (com regresso)",
   "show all tracks": "mostrar todos os percursos",
-  "filter options": "filtros"
+  "filter options": "filtros",
+  "password": "palavra-passe",
+  "submit": "enviar"
 }

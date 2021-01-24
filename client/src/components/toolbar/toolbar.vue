@@ -1,7 +1,7 @@
 <template>
   <v-card color="grey lighten-4" flat height="75px" tile>
     <v-app-bar dense>
-      <img class="bRadios8mr10" :src="`${getPublicPath}xisto.v01.ico`" alt="favicon" />
+      <img class="bRadios8mr10" :src="`${getPublicPath}xistov01.ico`" alt="favicon" />
       <v-toolbar-title v-if="$vuetify.breakpoint.name != 'xs' || !isCollapse">{{
         $t('walk to lunch')
       }}</v-toolbar-title>

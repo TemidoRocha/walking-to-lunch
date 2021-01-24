@@ -50,6 +50,10 @@ const schema = new mongoose.Schema({
   url: {
     type: String,
   },
+  operator: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
 });
 
 module.exports = mongoose.model('HikingSpots', schema);
