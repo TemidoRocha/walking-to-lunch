@@ -21,7 +21,8 @@
               </v-card-text>
               <v-card-text>
                 {{ $t('distance') }}: {{ hike.distance }} | {{ $t('duration') }}:
-                {{ hike.duration }}</v-card-text
+                {{ hike.duration[0] }}
+                {{ hike.duration[1] ? `, ${hike.duration[1]}` : '' }}</v-card-text
               >
               <v-btn @click="downloadHike(hike.url)">download</v-btn>
             </l-popup>
