@@ -3,7 +3,7 @@
     <v-form>
       <v-container>
         <v-row v-if="!getUserId">
-          <v-col v-if="isSignup" cols="12" sm="6" md="3">
+          <v-col v-if="isSignup && signupFalse" cols="12" sm="6" md="3">
             <v-text-field :label="$t('name')" solo v-model="name"></v-text-field>
           </v-col>
           <v-col cols="12" sm="6" md="6">
@@ -202,6 +202,8 @@ export default {
       duration0: '',
       duration1: '',
     },
+    // signup false
+    signupFalse: false,
   }),
   computed: {
     ...mapGetters(['getUserId', 'getUserName', 'getUserEmail']),
