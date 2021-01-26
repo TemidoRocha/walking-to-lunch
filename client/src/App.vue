@@ -20,6 +20,20 @@ export default {
 </script>
 
 <style>
+/**
+ * padding and margins
+ */
+.pb0 {
+  padding-bottom: 0px !important;
+}
+.pbt0 {
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+.mbt0 {
+  margin: 0px !important;
+  margin-top: 0px !important;
+}
 .maxwidth100 {
   max-width: 100%;
 }
@@ -28,13 +42,6 @@ export default {
   border-radius: 8px;
   margin-right: 10px;
   width: 28px;
-}
-.slide-enter-active {
-  animation: slide-in 200ms ease-out forwards;
-}
-
-.slide-leave-active {
-  animation: slide-out 200ms ease-out forwards;
 }
 
 @keyframes slide-in {
