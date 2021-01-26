@@ -5,6 +5,7 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 
 import 'leaflet/dist/leaflet.css'; // for leaflet
+import global from './plugins/global';
 import i18n from './plugins/i18n';
 import { routes } from './plugins/routes';
 import store from './plugins/store';
@@ -25,6 +26,7 @@ const router = new VueRouter({
 Vue.config.productionTip = false;
 
 new Vue({
+  global,
   i18n,
   router,
   store,

@@ -1,10 +1,9 @@
 import Vue from 'vue';
 const global = {
-  install(Vue, options) {
-    Vue.prototype.globalHelper = () => {
-      function capitalizeFLetter(str) {
-        return str[0].toUpperCase() + str.slice(1);
-      }
+  // install(Vue, options) {
+  install(Vue) {
+    Vue.prototype.$capitalizeFLetter = (str) => {
+      return str[0].toUpperCase() + str.slice(1);
     };
   },
 };

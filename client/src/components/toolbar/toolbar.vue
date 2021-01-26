@@ -3,7 +3,7 @@
     <v-app-bar dense>
       <img class="bRadios8mr10" :src="`${getPublicPath}xistov01.ico`" alt="favicon" />
       <v-toolbar-title v-if="$vuetify.breakpoint.name != 'xs' || !isCollapse">{{
-        $t('walk to lunch')
+        $capitalizeFLetter($t('walk to lunch'))
       }}</v-toolbar-title>
       <v-spacer v-if="$vuetify.breakpoint.name != 'xs' || !isCollapse"></v-spacer>
 

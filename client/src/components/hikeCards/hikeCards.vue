@@ -5,7 +5,7 @@
         <v-card no-gutters>
           <v-row no-gutters>
             <v-col cols="12" sm="2" md="2">
-              <v-card-title>{{ $t(capitalizeFLetter('filter options')) }}</v-card-title>
+              <v-card-title>{{ $capitalizeFLetter($t('filter options')) }}</v-card-title>
             </v-col>
             <v-col cols="12" sm="12" md="4">
               <v-checkbox
@@ -131,9 +131,6 @@ export default {
     },
     toggleReadMore() {
       this.isReadMore = !this.isReadMore;
-    },
-    capitalizeFLetter(str) {
-      return str[0].toUpperCase() + str.slice(1);
     },
   },
 };
