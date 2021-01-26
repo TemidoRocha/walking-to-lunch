@@ -3,6 +3,7 @@
     <v-form>
       <v-container>
         <v-row v-if="!getUserId">
+          <!-- && signupFalse so it is not showing -->
           <v-col v-if="isSignup && signupFalse" cols="12" sm="6" md="3">
             <v-text-field :label="$t('name')" solo v-model="name"></v-text-field>
           </v-col>
@@ -25,7 +26,8 @@
               submit
             </v-btn>
           </v-col>
-          <v-col cols="6">
+          <!-- && signupFalse so it is not showing -->
+          <v-col v-if="signupFalse" cols="6">
             <v-btn
               v-if="!isSignup && !getUserId"
               small

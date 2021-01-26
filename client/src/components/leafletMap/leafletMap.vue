@@ -1,6 +1,6 @@
 <template>
   <v-container class="grey lighten-5 mb-6" fluid>
-    <v-row no-gutters style="height: 75vh;">
+    <v-row no-gutters style="height: 58vh;">
       <v-col>
         <l-map ref="myMap" style="width: 100%" :zoom="zoom" :center="center">
           <l-tile-layer :url="url"></l-tile-layer>

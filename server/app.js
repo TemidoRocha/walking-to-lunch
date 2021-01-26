@@ -16,7 +16,8 @@ const authenticationRouter = require('./routes/authentication');
 
 const app = express();
 
-app.use(express.static(join(__dirname, './../client/dist')));
+//the bellow line needs to be commented for local
+// app.use(express.static(join(__dirname, './../client/dist')));
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
