@@ -89,8 +89,8 @@
               <v-row dense>
                 <v-col class="pbt0" cols="6"
                   ><v-card-actions class="pbt0">
-                    <v-btn text
-                      ><p class="cardButtonText">{{ $t('download') }}</p></v-btn
+                    <v-btn text @click="downloadHike(item.url)"
+                      ><p class="cardButtonText">{{ `${$t('download')}` }}</p></v-btn
                     >
                   </v-card-actions></v-col
                 >
@@ -113,6 +113,7 @@
 </template>
 
 <script>
+import downloadHike from '../../mixins/functions/downloadHike';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -120,6 +121,7 @@ export default {
     // toggleReadMore
     isReadMore: false,
   }),
+  mixins: [downloadHike],
   computed: {
     ...mapGetters(['getHikingsCards']),
     // filter options

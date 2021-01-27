@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import downloadHike from '../../mixins/functions/downloadHike';
 import { LCircleMarker, LMap, LPopup, LTileLayer } from 'vue2-leaflet';
 import { mapGetters } from 'vuex';
 
@@ -45,6 +46,7 @@ export default {
     LPopup,
     LTileLayer,
   },
+  mixins: [downloadHike],
   data: () => ({
     // map var
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -68,25 +70,6 @@ export default {
   methods: {
     popupTriggered(event) {
       this.$store.commit('filterHikingCards', event.target._popup._content.firstChild.innerText);
-    },
-    async downloadHike(url) {
-      try {
-        const pdf = await this.axios.get(`/api/downloadPdf/${url}`, {
-          responseType: 'arraybuffer',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/pdf',
-          },
-        });
-        var fileURL = window.URL.createObjectURL(new Blob([pdf.data]));
-        var fileLink = document.createElement('a');
-        fileLink.href = fileURL;
-        fileLink.setAttribute('download', `${url}.pdf`);
-        document.body.appendChild(fileLink);
-        fileLink.click();
-      } catch (error) {
-        console.error(error);
-      }
     },
   },
 };
