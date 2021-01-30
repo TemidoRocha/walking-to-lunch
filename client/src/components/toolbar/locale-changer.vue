@@ -1,6 +1,6 @@
 <template>
   <div class="locale-changer">
-    <select v-model="$i18n.locale" value="en" @click="changeMetaTag">
+    <select v-model="$i18n.locale" value="en" @click="changeMetaTag" class="whiteText">
       <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
     </select>
   </div>
@@ -23,7 +23,8 @@ export default {
 </script>
 <style>
 .locale-changer {
-  border: 1px solid black;
+  padding: 5px;
+  border: 1px solid white;
   border-radius: 5px;
 }</style
 >>

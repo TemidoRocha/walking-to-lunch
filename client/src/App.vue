@@ -1,7 +1,9 @@
 <template>
   <div>
-    <toolbar />
-    <router-view></router-view>
+    <v-app>
+      <toolbar />
+      <router-view></router-view>
+    </v-app>
   </div>
 </template>
 
@@ -20,6 +22,10 @@ export default {
 </script>
 
 <style>
+/* text format  */
+.whiteText {
+  color: white;
+}
 /**
  * padding and margins
  */

@@ -1,6 +1,6 @@
 <template>
   <v-container class="grey lighten-5 mb-6" fluid>
-    <v-row no-gutters style="height: 58vh;">
+    <v-row v-show="!pdfDialog" no-gutters style="height: 58vh;">
       <v-col>
         <l-map ref="myMap" style="width: 100%" :zoom="zoom" :center="center">
           <l-tile-layer :url="url"></l-tile-layer>
@@ -25,11 +25,19 @@
                 {{ hike.duration[1] ? `, ${hike.duration[1]}` : '' }}</v-card-text
               >
               <v-btn @click="downloadHike(hike.url)">download</v-btn>
+              <v-btn @click="openPdf(hike)">see pdf</v-btn>
             </l-popup>
           </l-circle-marker>
         </l-map>
       </v-col>
     </v-row>
+    <pdfView
+      v-if="pdfDialog"
+      :pdfDialog="pdfDialog"
+      :pdfSrc="pdfUrl"
+      :selectedHike="selectedHike"
+      @closeDialog="pdfDialog = false"
+    ></pdfView>
   </v-container>
 </template>
 
@@ -37,6 +45,7 @@
 import downloadHike from '../../mixins/functions/downloadHike';
 import { LCircleMarker, LMap, LPopup, LTileLayer } from 'vue2-leaflet';
 import { mapGetters } from 'vuex';
+import pdfView from '../pdfView/pdfView.vue';
 
 export default {
   name: 'App',
@@ -45,6 +54,7 @@ export default {
     LMap,
     LPopup,
     LTileLayer,
+    pdfView,
   },
   mixins: [downloadHike],
   data: () => ({
@@ -63,6 +73,10 @@ export default {
     },
     // hiking spots
     hikingSpots: [],
+    // pdf var
+    pdfUrl: '',
+    selectedHike: {},
+    pdfDialog: false,
   }),
   computed: {
     ...mapGetters(['getHikingsSpots']),
@@ -70,6 +84,11 @@ export default {
   methods: {
     popupTriggered(event) {
       this.$store.commit('filterHikingCards', event.target._popup._content.firstChild.innerText);
+    },
+    async openPdf(hike) {
+      this.selectedHike = hike;
+      this.pdfUrl = await this.getHikePdf(hike.url);
+      this.pdfDialog = true;
     },
   },
 };

@@ -24,17 +24,20 @@
       <v-col
         v-for="item in getHikingsCards"
         :key="item.id"
-        :cols="$vuetify.breakpoint.name == 'xs' || isReadMore ? '12' : '6'"
+        :cols="$vuetify.breakpoint.name == 'xs' || item.isReadMore ? '12' : '6'"
       >
         <v-card color="#385F73" dark>
           <v-row no-gutters>
-            <v-col class="" :cols="$vuetify.breakpoint.name == 'xs' || !isReadMore ? '12' : '6'">
+            <v-col
+              class=""
+              :cols="$vuetify.breakpoint.name == 'xs' || !item.isReadMore ? '12' : '6'"
+            >
               <v-card-title class="headline">
                 {{ item.name }}
               </v-card-title>
               <v-card-subtitle class="pb0"> {{ item.code }}</v-card-subtitle>
             </v-col>
-            <v-col v-if="isReadMore" :cols="$vuetify.breakpoint.name == 'xs' ? '12' : '6'">
+            <v-col v-if="item.isReadMore" :cols="$vuetify.breakpoint.name == 'xs' ? '12' : '6'">
               <v-list dense color="#385F73" dark>
                 <v-list-item-group>
                   <v-list-item two-line>
@@ -96,9 +99,9 @@
                 >
                 <v-col class="pbt0" cols="6"
                   ><v-card-actions class="pbt0">
-                    <v-btn text @click="toggleReadMore"
+                    <v-btn text @click="toggleIsReadMore(item._id)"
                       ><p class="cardButtonText">
-                        {{ $t(!isReadMore ? 'read more' : 'show less') }}
+                        {{ $t(!item.isReadMore ? 'read more' : 'show less') }}
                       </p></v-btn
                     >
                   </v-card-actions></v-col
@@ -114,13 +117,10 @@
 
 <script>
 import downloadHike from '../../mixins/functions/downloadHike';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
-  data: () => ({
-    // toggleReadMore
-    isReadMore: false,
-  }),
+  name: 'hikeCards',
   mixins: [downloadHike],
   computed: {
     ...mapGetters(['getHikingsCards']),
@@ -135,11 +135,9 @@ export default {
     },
   },
   methods: {
+    ...mapMutations(['toggleIsReadMore']),
     showAllMethod() {
       this.$store.commit('setHikingCardsIsShowAll', this.showAll);
-    },
-    toggleReadMore() {
-      this.isReadMore = !this.isReadMore;
     },
   },
 };

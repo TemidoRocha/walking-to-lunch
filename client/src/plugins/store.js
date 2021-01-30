@@ -56,10 +56,17 @@ export default new Vuex.Store({
       state.userEmail = null;
       state.userName = null;
     },
-    // hiking spots
+    /**
+     * hiking spots to show on leaflet
+     */
+    toggleIsReadMore(state, payload) {
+      const indexHikingCards = state.hikingCards.findIndex((x) => x._id === payload);
+      state.hikingCards[indexHikingCards].isReadMore = !state.hikingCards[indexHikingCards]
+        .isReadMore;
+    },
     setAllHikingSpots(state, payload) {
-      state.hikingSpotsApi = [...payload];
-      state.hikingSpots = [...payload];
+      state.hikingSpotsApi = payload.map((x) => ({ ...x, isReadMore: false }));
+      state.hikingSpots = payload.map((x) => ({ ...x, isReadMore: false }));
     },
     filterHikes(state, searchText) {
       if (searchText) {
@@ -70,14 +77,19 @@ export default new Vuex.Store({
         state.hikingSpots = state.hikingSpotsApi;
       }
     },
-    // hiking cards methods
+    /*
+     * hiking cards methods
+     */
     filterHikingCards(state, payload) {
       /** filter the hikingCards as per code district */
       if (payload) {
         state.showAll = false;
-        state.hikingCards = state.hikingSpotsApi.filter((x) =>
-          x.code.includes(payload.slice(1, 4))
-        );
+        state.hikingCards = state.hikingSpotsApi
+          .filter((x) => x.code.includes(payload.slice(1, 4)))
+          .reduce((acc, x) => {
+            if (x.code == payload.trim()) return [x, ...acc];
+            else return [...acc, x];
+          }, []);
       } else {
         state.hikingCards = [];
       }

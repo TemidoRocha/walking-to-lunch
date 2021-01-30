@@ -1,6 +1,6 @@
 <template>
-  <v-card color="grey lighten-4" flat height="75px" tile>
-    <v-app-bar dense>
+  <v-card flat tile>
+    <v-app-bar color="#6b7125" dense dark>
       <img class="bRadios8mr10" :src="`${getPublicPath}xistov01.ico`" alt="favicon" />
       <v-toolbar-title v-if="$vuetify.breakpoint.name != 'xs' || !isCollapse">{{
         $capitalizeFLetter($t('walk to lunch'))
