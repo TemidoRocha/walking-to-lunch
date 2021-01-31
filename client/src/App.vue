@@ -32,6 +32,9 @@ export default {
 .pb0 {
   padding-bottom: 0px !important;
 }
+.pb5 {
+  padding-bottom: 5px !important;
+}
 .pbt0 {
   padding-bottom: 0px !important;
   padding-top: 0px !important;

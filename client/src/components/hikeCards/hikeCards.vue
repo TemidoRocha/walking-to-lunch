@@ -72,7 +72,8 @@
                   <v-list-item>
                     <v-list-item-content>
                       <v-list-item-title class="listItemText"
-                        >{{ `${$t('duration')}:` }} {{ item.duration }}</v-list-item-title
+                        >{{ `${$t('duration')}:` }} {{ hike.duration[0] }}
+                        {{ hike.duration[1] ? `, ${hike.duration[1]}` : '' }}</v-list-item-title
                       >
                     </v-list-item-content>
                   </v-list-item>
@@ -91,7 +92,7 @@
             <v-col class="pbt0" cols="12">
               <v-row dense>
                 <v-col class="pbt0" cols="6"
-                  ><v-card-actions class="pbt0">
+                  ><v-card-actions light class="pbt0">
                     <v-btn text @click="downloadHike(item.url)"
                       ><p class="cardButtonText">{{ `${$t('download')}` }}</p></v-btn
                     >
