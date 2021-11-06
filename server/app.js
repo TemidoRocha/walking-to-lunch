@@ -16,7 +16,7 @@ const authenticationRouter = require('./routes/authentication');
 
 const app = express();
 
-app.use('/', express.static(join(__dirname, './../client/dist/')));
+app.use(express.static(join(__dirname, './../client/dist/')));
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
@@ -44,6 +44,8 @@ app.use(bindUserToViewLocals);
 
 app.use('/api', indexRouter);
 app.use('/api/authentication', authenticationRouter);
+
+app.get('/*', (req, res, next) => res.sendFile(join(__dirname, './../client/dist', 'index.html')));
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
