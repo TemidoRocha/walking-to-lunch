@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   transpileDependencies: ['vuetify'],
   devServer: {
@@ -19,4 +21,5 @@ module.exports = {
       enableInSFC: true,
     },
   },
+  outputDir: path.resolve(__dirname, '../server'),
 };
