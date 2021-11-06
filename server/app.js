@@ -53,7 +53,7 @@ app.use((req, res, next) => {
 // Catch all error handler
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
-  res.json({ type: 'error', error: { message: error.message } });
+  res.json({ type: 'error', error: { message: error.message, __dirname: __dirname } });
 });
 
 module.exports = app;
