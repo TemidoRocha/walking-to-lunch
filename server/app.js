@@ -17,6 +17,9 @@ const authenticationRouter = require('./routes/authentication');
 const app = express();
 
 app.use(express.static(join(__dirname, './../client/dist/')));
+app.get('/*', (req, res) => {
+  res.sendFile(join(__dirname, './../client/dist/', 'index.html'));
+});
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
