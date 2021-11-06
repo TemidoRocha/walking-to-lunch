@@ -2,7 +2,7 @@
   "name": "walking-to-lunch",
   "version": "1.0.0",
   "engines": {
-    "node": "12.16.0"
+    "node": "14.17.1"
   },
   "scripts": {
     "client:build": "cd client && npm install && npm build && cd ..",
