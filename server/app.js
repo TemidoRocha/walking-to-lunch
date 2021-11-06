@@ -45,7 +45,7 @@ app.use(bindUserToViewLocals);
 app.use('/api', indexRouter);
 app.use('/api/authentication', authenticationRouter);
 
-app.get('/*', (req, res, next) => res.sendFile(join(__dirname, './../client/dist', 'index.html')));
+app.get('/*', (req, res, next) => res.sendFile(join(__dirname, '../client/dist')));
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
