@@ -21,5 +21,5 @@ module.exports = {
       enableInSFC: true,
     },
   },
-  outputDir: path.resolve(__dirname, '../server'),
+  outputDir: path.resolve(__dirname, '../server/dist'),
 };
